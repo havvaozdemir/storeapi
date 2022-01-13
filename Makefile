@@ -29,4 +29,4 @@ build-image:
 	docker build --tag storeapi --no-cache=true .
 
 run-docker:
-	docker run -d -p 8080:8080 storeapi	
+	docker run -d -p 3000:3000 storeapi	

@@ -6,7 +6,7 @@ var (
 	//ExportFileName definition
 	ExportFileName = utils.GetEnv("EXPORT_FILE_NAME", "output.json")
 	//APIPort definition
-	APIPort = utils.GetEnv("API_PORT", ":8080")
+	APIPort = utils.GetEnv("API_PORT", "3000")
 	//Duration period of store save to json file
 	Duration = utils.GetEnv("DURATION", "10")
 	//MongoDBURI for connecting db

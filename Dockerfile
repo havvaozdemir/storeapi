@@ -11,5 +11,5 @@ FROM alpine:latest
 
 WORKDIR /app
 COPY --from=builder /app/storeapi .
-EXPOSE 8080
+EXPOSE 3000
 CMD ["/app/storeapi"]

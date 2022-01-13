@@ -26,10 +26,10 @@ Install the requirements listed below.
     >make run
     >make run-docker
 
-* Go to http://localhost:8080
+* Go to http://localhost:3000
 
 * You can reach the services by Heroku address below:
-    https://storeapi.herokuapp.com
+    https://storeapi20222.herokuapp.com
 
 ## Endpoint Table
 

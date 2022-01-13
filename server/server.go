@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"net/http"
+	"os"
 	"storeapi/config"
 	"storeapi/logger"
 	"storeapi/middleware"
@@ -57,17 +58,22 @@ func NewServer() {
 	r.HandleFunc("/in-memory", service.GetStore).Methods("GET")
 	r.HandleFunc("/records", service.FetchRecords).Methods("POST")
 	r.MethodNotAllowedHandler = middleware.CheckCors()
-	logger.Info.Printf("Server started %s", config.APIPort)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = config.APIPort
+	}
+	logger.Info.Printf("Server started : %s", port)
 
 	srv := &http.Server{
 		Handler:      r,
-		Addr:         config.APIPort,
+		Addr:         ":" + port,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
 
 	if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-		logger.Fatal.Fatalf("Could not listen on %s: %v\n", config.APIPort, err)
+		logger.Fatal.Fatalf("Could not listen on %s: %v\n", port, err)
 	}
 	logger.Info.Println("Server stopped")
 }
