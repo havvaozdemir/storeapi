@@ -27,5 +27,6 @@ func main() {
 			logger.Fatal.Printf("Failed: (%v)", r)
 		}
 	}()
+
 	server.NewServer()
 }
