@@ -14,16 +14,17 @@ Install the requirements listed below.
 
 ## How to use
 * go build, run , test options are in Makefile
-    >Make build
-    >Make run
-    >Make test
-    >Make swagger
-    >Make build-image
-    >Make run-docker
+
+    >make build
+    >make run
+    >make test
+    >make swagger
+    >make build-image
+    >make run-docker
 
 * Start application with : 
-    make run
-    make run-docker
+    >make run
+    >make run-docker
 
 * Go to http://localhost:8080
 
