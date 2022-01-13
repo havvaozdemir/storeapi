@@ -1,0 +1,51 @@
+name: storeapi-pipeline
+on:
+  push:
+    branches:
+      - "**"
+    paths-ignore:
+      - '**.md'
+      - '**.log'
+      - '**.json'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.log'
+      - '**.json'  
+jobs:
+  build-lint-fmt-vet:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        go: [ '1.17' ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Instal golint
+        run: |
+            go version
+            go get -u golang.org/x/lint/golint
+      - name: Run build
+        run: go build .
+      - name: run vet
+        run: go vet ./...
+      - name: run fmt
+        run: go fmt ./... 
+      - name: run lint
+        run: golint .
+  tests:                  
+    runs-on: macos-latest
+    needs: build-lint-fmt-vet
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - name: build
+        run: go test -v ./...

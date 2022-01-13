@@ -1,0 +1,52 @@
+basePath: /
+consumes:
+- application/json
+info:
+  contact:
+    email: havvaozdemir34@gmail.com
+    name: Havva Ozdemir
+  description: RESTfull API that includes endpoints for fetching data from the provided
+    MongoBD and getting, setting key-value pairs by in-memory store.
+  title: Store API
+  version: 1.0.0
+paths:
+  /in-memory:
+    get:
+      description: Return get the value of key from store
+      operationId: queryparam
+      responses:
+        "200":
+          $ref: '#/responses/json'
+        "400":
+          $ref: '#/responses/KeyRequired'
+        "404":
+          $ref: '#/responses/KeyNotFound'
+      tags:
+      - key
+    post:
+      description: Sets key value from store
+      operationId: addStore
+      responses:
+        "201":
+          $ref: '#/responses/json'
+        "400":
+          $ref: '#/responses/KeyRequired,'
+          description: ValueRequired, Reading body errors,
+      tags:
+      - body
+  /records:
+    post:
+      description: Return fetch the records from mongodb using body params
+      operationId: requestbody
+      responses:
+        "200":
+          $ref: '#/responses/json'
+        "400":
+          $ref: '#/responses/StatusBadRequest'
+      tags:
+      - with
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"
