@@ -2,6 +2,8 @@
 
 a RESTfull API that includes endpoints for fetching data from the provided MongoBD and getting, setting key-value pairs by in-memory store.
 
+For in-memory key-value store application, key-value pairs are saved to json file(from enviroment variable) using duration enviroment variable for defined period. 
+
 # How to install
 
 git clone https://github.com/havvaozdemir/storeapi.git
